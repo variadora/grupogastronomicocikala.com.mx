@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Logo } from "./Logo";
 import { useI18n } from "../i18n";
+import { scrollToId } from "../lib/scroll";
 
 const links = [
   { id: "nosotros", key: "about" },
@@ -24,7 +25,7 @@ export const Navbar = () => {
 
   const go = (id) => {
     setOpen(false);
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    scrollToId(id);
   };
 
   return (

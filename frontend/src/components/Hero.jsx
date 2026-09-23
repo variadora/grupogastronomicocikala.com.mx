@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 import { useI18n } from "../i18n";
+import { scrollToId } from "../lib/scroll";
 
 const HERO_IMG =
   "https://images.pexels.com/photos/4253133/pexels-photo-4253133.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1200&w=1800";
@@ -31,7 +32,7 @@ const Line = ({ children, i, accent }) => (
 export const Hero = () => {
   const { t } = useI18n();
 
-  const go = (id) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  const go = (id) => scrollToId(id);
 
   return (
     <section id="inicio" className="relative min-h-screen w-full overflow-hidden flex flex-col justify-end">

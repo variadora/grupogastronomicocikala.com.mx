@@ -1,6 +1,7 @@
 import React from "react";
 import { Logo } from "./Logo";
 import { useI18n } from "../i18n";
+import { scrollToId } from "../lib/scroll";
 
 const navLinks = [
   { id: "nosotros", key: "about" },
@@ -12,7 +13,7 @@ const navLinks = [
 export const Footer = () => {
   const { t } = useI18n();
   const year = new Date().getFullYear();
-  const go = (id) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  const go = (id) => scrollToId(id);
 
   return (
     <footer className="relative border-t border-[#212D24] bg-[#0A0B0A]" data-testid="footer">
