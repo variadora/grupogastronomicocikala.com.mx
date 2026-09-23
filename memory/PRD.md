@@ -45,3 +45,11 @@
 
 ## Next Tasks
 - Await client's real content (logo, colors, copy, contact details, product photos)
+
+## Update 2 (2026-06)
+- Product photos: 4 imágenes personalizadas generadas (especias, abarrotes, frescos, insumos) con arte cohesivo terracota/oscuro
+- Catálogo PDF descargable: generado con reportlab en /app/frontend/public/catalogo-cikala-2026.pdf (portada + 4 líneas + servicios + contacto); botón de descarga en Productos (HTTP 200 application/pdf)
+- Scroll suave migrado de scrollIntoView a Lenis manual (App.js useEffect con cleanup, expuesto en window.__lenis) + helper src/lib/scroll.js
+- Generador del catálogo persistido en /app/scripts/gen_catalog.py
+- Validado 100% backend + frontend (iteration_2)
+- PENDIENTE (datos reales): el usuario aún no proporcionó teléfono, dirección ni el valor del correo; se mantienen datos de ejemplo (ventas@cikala.mx, Ciudad de México)
