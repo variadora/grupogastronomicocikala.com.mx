@@ -17,10 +17,30 @@ IMG_DIR = "/tmp/cat"
 OUT = "/app/frontend/public/catalogo-cikala-2026.pdf"
 
 products = [
-    ("01", "Especias & Condimentos", "Selección global, molida y en grano. Paprika, cúrcuma, chiles secos, pimienta y más.", "especias.jpg"),
-    ("02", "Abarrotes & Secos", "Granos, harinas, legumbres y despensa por volumen para operación continua.", "abarrotes.jpg"),
-    ("03", "Frescos & Vegetales", "Producto de temporada con origen verificado y trazabilidad garantizada.", "frescos.jpg"),
-    ("04", "Insumos de Cocina", "Suministros de acero inoxidable, herramientas y utensilios para cocina profesional.", "insumos.jpg"),
+    ("01", "Especias & Condimentos", "Selección global, molida y en grano. Paprika, cúrcuma, chiles secos, pimienta y más.", "especias.jpg",
+     [("Paprika ahumada molida", "Saco 5 kg", "$742.00"),
+      ("Cúrcuma en polvo", "Saco 5 kg", "$688.00"),
+      ("Pimienta negra en grano", "Saco 10 kg", "$1,540.00"),
+      ("Chile de árbol seco", "Caja 3 kg", "$395.00"),
+      ("Canela en raja", "Caja 2 kg", "$610.00")]),
+    ("02", "Abarrotes & Secos", "Granos, harinas, legumbres y despensa por volumen para operación continua.", "abarrotes.jpg",
+     [("Arroz grano largo", "Saco 25 kg", "$690.00"),
+      ("Frijol negro selecto", "Saco 25 kg", "$980.00"),
+      ("Harina de trigo panadera", "Saco 44 kg", "$860.00"),
+      ("Lenteja premium", "Saco 20 kg", "$920.00"),
+      ("Azúcar estándar", "Saco 50 kg", "$1,120.00")]),
+    ("03", "Frescos & Vegetales", "Producto de temporada con origen verificado y trazabilidad garantizada.", "frescos.jpg",
+     [("Jitomate saladet", "Caja 20 kg", "$430.00"),
+      ("Cebolla blanca", "Costal 25 kg", "$385.00"),
+      ("Papa alpha", "Costal 25 kg", "$410.00"),
+      ("Zanahoria", "Arpilla 20 kg", "$298.00"),
+      ("Mix hojas verdes", "Caja 5 kg", "$520.00")]),
+    ("04", "Insumos de Cocina", "Suministros de acero inoxidable, herramientas y utensilios para cocina profesional.", "insumos.jpg",
+     [("Sartén acero inox 30 cm", "Pieza", "$845.00"),
+      ("Cuchillo chef 8\"", "Pieza", "$520.00"),
+      ("Tabla de corte HDPE", "Pieza", "$310.00"),
+      ("Bowl acero inox 5 L", "Pieza", "$275.00"),
+      ("Cucharón servicio", "Pieza", "$140.00")]),
 ]
 
 services = [
@@ -94,7 +114,7 @@ c.drawRightString(W - 22 * mm, 12 * mm, "ventas@cikala.mx")
 c.showPage()
 
 # ---------- PRODUCT PAGES ----------
-for tag, title, desc, imgf in products:
+for tag, title, desc, imgf, prices in products:
     bg()
     # image top half
     try:
@@ -122,6 +142,52 @@ for tag, title, desc, imgf in products:
         line += w + " "
     t.textLine(line)
     c.drawText(t)
+
+    # ---- pricing table ----
+    left = 22 * mm
+    right = W - 22 * mm
+    col1 = left + 3 * mm            # Presentación
+    col2 = left + 92 * mm           # Contenido
+    col3 = right - 3 * mm           # Precio (right aligned)
+    row_h = 9 * mm
+    top = H - 203 * mm
+
+    c.setFillColor(PRIMARY)
+    c.setFont("Helvetica-Bold", 9)
+    c.drawString(left, top + 5 * mm, "PRESENTACIONES & PRECIO MAYORISTA")
+
+    # header row
+    c.setFillColor(SURFACE)
+    c.rect(left, top - row_h, right - left, row_h, fill=1, stroke=0)
+    c.setFillColor(FG)
+    c.setFont("Helvetica-Bold", 9)
+    c.drawString(col1, top - row_h + 3.2 * mm, "PRODUCTO")
+    c.drawString(col2, top - row_h + 3.2 * mm, "PRESENTACIÓN")
+    c.drawRightString(col3, top - row_h + 3.2 * mm, "PRECIO (MXN)")
+
+    y = top - row_h
+    for i, (prod, pres, price) in enumerate(prices):
+        y -= row_h
+        if i % 2 == 0:
+            c.setFillColor(HexColor("#0C120E"))
+            c.rect(left, y, right - left, row_h, fill=1, stroke=0)
+        c.setFillColor(FG)
+        c.setFont("Helvetica", 10)
+        c.drawString(col1, y + 3.0 * mm, prod)
+        c.setFillColor(DIM)
+        c.drawString(col2, y + 3.0 * mm, pres)
+        c.setFillColor(PRIMARY)
+        c.setFont("Helvetica-Bold", 10)
+        c.drawRightString(col3, y + 3.0 * mm, price)
+
+    # table border
+    c.setStrokeColor(BORDER)
+    c.setLineWidth(1)
+    c.rect(left, y, right - left, top - y, fill=0, stroke=1)
+
+    c.setFillColor(DIM)
+    c.setFont("Helvetica-Oblique", 8)
+    c.drawString(left, y - 6 * mm, "Precios de referencia sin IVA · sujetos a volumen, temporada y disponibilidad. Solicita cotización formal.")
 
     c.setStrokeColor(BORDER)
     c.setLineWidth(1)
