@@ -1,0 +1,150 @@
+@import url("https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400,500,700,800,900&f[]=satoshi@400,500,700,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --bg: #0A0B0A;
+    --surface: #0E1410;
+    --muted: #121814;
+    --secondary: #151C17;
+    --fg: #F2F0E9;
+    --fg-dim: #D4DACF;
+    --border: #212D24;
+    --primary: #C84C32;
+    --radius: 0.5rem;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    margin: 0;
+    background-color: var(--bg);
+    color: var(--fg);
+    font-family: "Satoshi", sans-serif;
+    overflow-x: hidden;
+}
+
+::selection {
+    background: var(--primary);
+    color: #fff;
+}
+
+/* Lenis */
+html.lenis,
+html.lenis body {
+    height: auto;
+}
+.lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+    overflow: hidden;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 9px;
+}
+::-webkit-scrollbar-track {
+    background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+    background: #26332b;
+    border-radius: 20px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary);
+}
+
+@layer base {
+    :root {
+        --background: 120 6% 4%;
+        --foreground: 44 25% 93%;
+        --card: 130 15% 6%;
+        --card-foreground: 44 25% 93%;
+        --popover: 130 15% 6%;
+        --popover-foreground: 44 25% 93%;
+        --primary: 12 60% 49%;
+        --primary-foreground: 0 0% 100%;
+        --secondary: 132 15% 10%;
+        --secondary-foreground: 100 10% 84%;
+        --muted: 132 15% 9%;
+        --muted-foreground: 100 8% 62%;
+        --accent: 12 60% 49%;
+        --accent-foreground: 0 0% 100%;
+        --destructive: 0 72% 45%;
+        --destructive-foreground: 0 0% 98%;
+        --border: 140 16% 15%;
+        --input: 140 16% 15%;
+        --ring: 12 60% 49%;
+        --radius: 0.5rem;
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+}
+
+@layer components {
+    .font-display {
+        font-family: "Cabinet Grotesk", sans-serif;
+    }
+    .font-serif-accent {
+        font-family: "Cormorant Garamond", serif;
+    }
+    .eyebrow {
+        font-family: "Satoshi", sans-serif;
+        text-transform: uppercase;
+        letter-spacing: 0.28em;
+        font-size: 0.7rem;
+        font-weight: 700;
+    }
+}
+
+/* Grain / noise overlay */
+.noise-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0.04;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.marquee-track {
+    display: inline-flex;
+    white-space: nowrap;
+    will-change: transform;
+    animation: marquee 38s linear infinite;
+}
+@keyframes marquee {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+.text-balance {
+    text-wrap: balance;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .marquee-track {
+        animation: none;
+    }
+}

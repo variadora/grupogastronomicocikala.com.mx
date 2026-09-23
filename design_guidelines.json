@@ -1,0 +1,106 @@
+{
+  "theme": "dark",
+  "typography": {
+    "headings": "Cabinet Grotesk, sans-serif",
+    "body": "Satoshi, sans-serif",
+    "accent": "Cormorant Garamond, serif"
+  },
+  "colors": {
+    "background": "#0A0B0A",
+    "foreground": "#F2F0E9",
+    "primary": "#C84C32",
+    "primary_foreground": "#FFFFFF",
+    "secondary": "#151C17",
+    "secondary_foreground": "#D4DACF",
+    "border": "#212D24",
+    "muted": "#121814",
+    "accent": "#C84C32",
+    "surface": "#0E1410"
+  },
+  "visual_enhancers": {
+    "textures": "Subtle noise overlay (grain) on dark background for a premium matte feel. Include an SVG noise filter component.",
+    "borders": "1px solid #212D24 for structure and bento boxes. Technical grid look where applicable.",
+    "shadows": "Deep ambient shadows on hover. Soft glow effects for active elements.",
+    "glassmorphism": "Crystal Glass variant: bg-black/60, backdrop-blur-xl, border-b border-white/10 for the header."
+  },
+  "logo": {
+    "type": "svg_mark",
+    "description": "Minimalist geometric SVG mark. A stylized 'C' intertwined with a minimal box shape representing logistics, and the wordmark 'CIKALA' in bold Cabinet Grotesk.",
+    "instructions": "Create an original inline SVG logo in the header and as a favicon replacement."
+  },
+  "layouts": {
+    "hero": "Full viewport height (100vh). Kinetic text masking on load (framer-motion). Large background image with 50% black overlay. Line-by-line reveal for H1.",
+    "about": "Editorial layout. Large text on the left, smaller descriptive text on the right. High contrast text. Asymmetrical.",
+    "services": "Bento Grid (Mode A). 12-column grid. Asymmetrical sizing for 'Sourcing', 'Distribution', 'Supply'. Use tight borders and hover zoom effects for images inside cards.",
+    "products": "Horizontal scroll or Masonry grid of high-quality product images with hover-to-reveal text details.",
+    "contact": "Split layout. Left: large 'Let's Talk / Hablemos' text. Right: Shadcn form with customized dark inputs."
+  },
+  "components": {
+    "navbar": "Sticky Glassmorphism header with bilingual toggle (ES/EN) and smooth scroll anchor links.",
+    "marquee": "Editorial Marquee (Subtle/Organic) between About and Services sections. 'Premium Ingredients — Global Sourcing — Wholesale — Gastronomy'."
+  },
+  "motion": {
+    "scroll": "Lenis for smooth momentum scrolling.",
+    "reveal": "Framer Motion for scroll-triggered fade-up and scale-in of grid items.",
+    "hero_reveal": "Initial load masking line-by-line reveal for heading (staggered)."
+  },
+  "image_urls": [
+    {
+      "url": "https://images.pexels.com/photos/9415582/pexels-photo-9415582.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "category": "productos",
+      "description": "Spices on shelves - use in Products section or Bento Grid."
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1592085198739-ffcad7f36b54?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2OTV8MHwxfHNlYXJjaHwxfHxmb29kJTIwbG9naXN0aWNzJTIwd2FyZWhvdXNlfGVufDB8fHx8MTc5MDE5Njk2N3ww&ixlib=rb-4.1.0&q=85",
+      "category": "servicios",
+      "description": "Warehouse shelving - use in Logistics/Distribution service card."
+    },
+    {
+      "url": "https://images.pexels.com/photos/4253133/pexels-photo-4253133.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "category": "hero",
+      "description": "Chef in modern kitchen - use as hero background with heavy dark overlay (bg-black/50)."
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1563865436874-9aef32095fad?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2Mzl8MHwxfHNlYXJjaHwyfHxnb3VybWV0JTIwZm9vZCUyMGluZ3JlZGllbnRzfGVufDB8fHx8MTc5MDE5Njk2N3ww&ixlib=rb-4.1.0&q=85",
+      "category": "productos",
+      "description": "Assorted vegetables - use in Products showcase."
+    },
+    {
+      "url": "https://images.pexels.com/photos/4487383/pexels-photo-4487383.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "category": "nosotros",
+      "description": "Workers in warehouse - use for About Us section."
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1503810473512-f64b56827964?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2Mzl8MHwxfHNlYXJjaHwzfHxnb3VybWV0JTIwZm9vZCUyMGluZ3JlZGllbnRzfGVufDB8fHx8MTc5MDE5Njk2N3ww&ixlib=rb-4.1.0&q=85",
+      "category": "servicios",
+      "description": "Fruits, seeds, spices in bowls - use for Sourcing/Supplying card."
+    }
+  ],
+  "accessibility": {
+    "contrast": "Ensure text over images has sufficient contrast or text-shadow.",
+    "motion": "Respect prefers-reduced-motion."
+  },
+  "instructions_to_main_agent": [
+    "Install and configure `@studio-freight/react-lenis` for smooth scrolling wrapper.",
+    "Install `framer-motion` and use it for the kinetic line-by-line reveal in the hero and scroll animations.",
+    "Implement a bilingual translation dictionary (ES/EN) and a context provider with a toggle in the navbar.",
+    "Create a functional contact form using Shadcn forms and wire it to a FastAPI backend endpoint to save to a SQLite DB.",
+    "For the Bento Grid in 'Servicios', ensure it follows the 'Tetra Grid' logic, asymmetric with empty spaces or spanned cards.",
+    "Load Cabinet Grotesk (or similar geometric bold sans like Satoshi/Clash Display) via Google Fonts or standard imports. Do NOT use Inter for headings.",
+    "Create a React component for a noise overlay (`pointer-events-none`) to apply globally for texture.",
+    "Implement the 'Inicio, Nosotros, Servicios, Productos, Contacto' sections using semantic HTML and anchor scrolling."
+  ],
+  "UNIVERSAL_GUIDELINES_FOR_MAIN_AGENT": [
+    "Avoid generic, 'on distribution' outputs. Make creative, distinctive frontends that surprise and delight.",
+    "Create depth through layered design elements with z-index hierarchy.",
+    "Use glass-morphism effects with backdrop filters (12-24px blur).",
+    "NEVER apply universal transition (e.g., transition: all). Add transitions for specific interactive elements.",
+    "DO NOT center align the app container. No .App { text-align: center; }.",
+    "Every interaction needs micro-animations - hover states, transitions, parallax effects, and entrance animations.",
+    "Use 2-3x more spacing than feels comfortable.",
+    "Missing categories = placeholder text which is FORBIDDEN. Use the provided images.",
+    "Prioritize using pre-existing components from src/components/ui.",
+    "Use sonner for toasts.",
+    "All interactive and key informational elements MUST include a data-testid attribute to facilitate robust automated testing."
+  ]
+}
